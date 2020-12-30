@@ -5,8 +5,9 @@ import {
     BlockControls,
     InspectorControls,
     AlignmentToolbar,
-    PanelColorSettings
-} from "@wordpress/editor";
+    PanelColorSettings,
+    withColors
+} from "@wordpress/block-editor";
 
 class Edit extends Component {
     onChangeContent = content => {
@@ -66,4 +67,4 @@ class Edit extends Component {
     }
 }
 
-export default Edit;
+export default withColors("backgroundColor", "textColor")(Edit);
