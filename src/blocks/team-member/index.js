@@ -31,6 +31,13 @@ const attributes = {
         source: "attribute",
         selector: "img",
         attribute: "src"
+    },
+    social: {
+        type: "array",
+        default: [
+            { link: "https://facebook.com", icon: "wordpress" },
+            { link: "https://facebook.com", icon: "wordpress" }
+        ]
     }
 };
 
@@ -59,9 +66,10 @@ registerBlockType("mytheme-blocks/team-member", {
     attributes,
 
     save: ({ attributes }) => {
-        const { title, info } = attributes;
+        const { title, info, url, alt, id } = attributes;
         return (
             <div>
+                {url && <img src={url} alt={alt} className={id ? `wp-image-${id}` : null} />}
                 {title && (
                     <RichText.Content
                         className={"wp-block-mytheme-blocks-team-member__title"}

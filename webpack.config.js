@@ -92,7 +92,8 @@ module.exports = (env, argv) => {
             "@wordpress/components": ["wp", "components"],
             "@wordpress/block-editor": ["wp", "blockEditor"],
             "@wordpress/element": ["wp", "element"],
-            "@wordpress/blob": ["wp", "blob"]
+            "@wordpress/blob": ["wp", "blob"],
+            "@wordpress/data": ["wp", "data"]
         }
     };
     return config;
