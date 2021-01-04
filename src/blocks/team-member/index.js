@@ -1,9 +1,10 @@
-import "./style.editor.scss";
 import "./parent";
+import "./style.editor.scss";
 import { registerBlockType } from "@wordpress/blocks";
 import { __ } from "@wordpress/i18n";
 import edit from "./edit";
 import { RichText } from "@wordpress/block-editor";
+import { Dashicon } from "@wordpress/components";
 
 const attributes = {
     title: {
@@ -34,10 +35,20 @@ const attributes = {
     },
     social: {
         type: "array",
-        default: [
-            { link: "https://facebook.com", icon: "wordpress" },
-            { link: "https://facebook.com", icon: "wordpress" }
-        ]
+        default: [],
+        source: "query",
+        selector: "wp-block-mytheme-blocks-team-member__social ul li",
+        query: {
+            icon: {
+                source: "attribute",
+                attribute: "data-icon"
+            },
+            link: {
+                source: "attribute",
+                selector: "a ",
+                attribute: "href"
+            }
+        }
     }
 };
 
@@ -66,7 +77,7 @@ registerBlockType("mytheme-blocks/team-member", {
     attributes,
 
     save: ({ attributes }) => {
-        const { title, info, url, alt, id } = attributes;
+        const { title, info, url, alt, id, social } = attributes;
         return (
             <div>
                 {url && <img src={url} alt={alt} className={id ? `wp-image-${id}` : null} />}
@@ -83,6 +94,25 @@ registerBlockType("mytheme-blocks/team-member", {
                         tagName="p"
                         value={info}
                     />
+                )}
+                {social.length > 0 && (
+                    <div className={"wp-block-mytheme-blocks-team-member__social"}>
+                        <ul>
+                            {social.map((item, index) => {
+                                return (
+                                    <li key={index} data-icon={item.icon}>
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                        >
+                                            <Dashicon icon={item.icon} size={16} />
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 )}
             </div>
         );

@@ -1,3 +1,7 @@
+.social_dragging {
+    list-style: none;
+}
+
 .wp-block-mytheme-blocks-team-members {
     display: flex;
     flex-wrap: wrap;
@@ -22,6 +26,46 @@
             color: #565656;
             font-weight: 300;
             margin-bottom: 5px;
+        }
+        &__addIcon {
+            padding: 2px;
+            line-height: 1;
+            border: 1px dashed #8c969f;
+            cursor: pointer;
+        }
+        &__linkForm {
+            border: 1px solid #eaeaea;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        &__removeLink {
+            color: #d23535;
+            font-size: 14px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        &__social {
+            ul {
+                list-style: none;
+                line-height: 1;
+                margin-left: -5px;
+                margin-right: -5px;
+                li {
+                    display: inline-block;
+                    line-height: 1;
+                    margin: 5px;
+                    a {
+                        border-bottom: none;
+                    }
+                    &.is-selected {
+                        outline: 2px solid #f03;
+                    }
+                    svg {
+                        vertical-align: middle;
+                        color: #4e4e4e;
+                    }
+                }
+            }
         }
     }
 }
